@@ -443,10 +443,59 @@ footer {
 .modal-content {
   background-color: var(--color-white);
   width: 90%;
+  height: 100%;
   max-width: 600px;
   border-radius: 10px;
-  overflow: hidden;
+  overflow-y: auto;
   animation: modalOpen 0.5s;
+}
+
+/* Adicione ao seu CSS existente */
+.pricing-info {
+    border: 2px solid var(--color-primary);
+    background: linear-gradient(to right, rgba(255, 51, 153, 0.1), rgba(255, 204, 0, 0.1));
+}
+
+.price-summary {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* Melhorar a aparência dos grupos de rádio */
+.radio-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    background-color: var(--color-light);
+    border-radius: 5px;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+.radio-option:hover {
+    border-color: var(--color-primary);
+}
+
+.radio-option input[type="radio"]:checked + label {
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.radio-option input[type="radio"]:checked ~ .radio-option {
+    border-color: var(--color-primary);
+    background-color: rgba(255, 51, 153, 0.1);
 }
 
 @keyframes modalOpen {

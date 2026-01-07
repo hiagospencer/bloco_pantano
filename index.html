@@ -208,11 +208,26 @@
     <div class="modal" id="registrationModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>INSCRIÇÃO PARA O BLOCO EQUIPE PÂNTANO</h2>
+                <h2>INSCRIÇÃO PARA O BLOCO DO URSO</h2>
                 <button class="close-modal" id="closeModalBtn">&times;</button>
             </div>
 
             <div class="modal-body" id="formContainer">
+                <div class="pricing-info"
+                    style="background-color: var(--color-light); padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--color-secondary);">
+                    <h3 style="color: var(--color-dark); margin-bottom: 10px;">🎭 PREÇOS DOS ABADÁS 🎭</h3>
+                    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <h4 style="color: var(--color-primary); margin-bottom: 5px;">Abadá Individual</h4>
+                            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-text);">R$ 60,00</p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <h4 style="color: var(--color-primary); margin-bottom: 5px;">Casadinha</h4>
+                            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-text);">R$ 100,00</p>
+                        </div>
+                    </div>
+                </div>
+
                 <form id="registrationForm">
                     <div class="form-group">
                         <label for="fullName">Nome Completo *</label>
@@ -225,6 +240,20 @@
                     </div>
 
                     <div class="form-group">
+                        <label>Tipo de Abadá *</label>
+                        <div class="radio-group" id="abadaTypeGroup">
+                            <div class="radio-option">
+                                <input type="radio" id="individual" name="abadaType" value="Individual" required checked>
+                                <label for="individual">Individual (R$ 60,00)</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="casadinha" name="abadaType" value="Casadinha">
+                                <label for="casadinha">Casadinha (R$ 100,00)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="shirtSizeIndividual">
                         <label for="shirtSize">Tamanho da Camisa *</label>
                         <select id="shirtSize" class="form-control" required>
                             <option value="">Selecione o tamanho</option>
@@ -233,6 +262,34 @@
                             <option value="G">Grande (G)</option>
                             <option value="GG">Extra Grande (GG)</option>
                         </select>
+                    </div>
+
+                    <div class="form-group" id="shirtSizeCasadinha" style="display: none;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div>
+                                <label for="shirtSize1">Tamanho da Camisa 1 *</label>
+                                <select id="shirtSize1" class="form-control">
+                                    <option value="">Selecione o tamanho</option>
+                                    <option value="P">Pequeno (P)</option>
+                                    <option value="M">Médio (M)</option>
+                                    <option value="G">Grande (G)</option>
+                                    <option value="GG">Extra Grande (GG)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="shirtSize2">Tamanho da Camisa 2 *</label>
+                                <select id="shirtSize2" class="form-control">
+                                    <option value="">Selecione o tamanho</option>
+                                    <option value="P">Pequeno (P)</option>
+                                    <option value="M">Médio (M)</option>
+                                    <option value="G">Grande (G)</option>
+                                    <option value="GG">Extra Grande (GG)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.9rem; color: var(--color-dark); margin-top: 8px; font-style: italic;">
+                            ⓘ A casadinha é para a mesma pessoa ou para casal
+                        </p>
                     </div>
 
                     <div class="form-group">
@@ -253,6 +310,11 @@
                         </div>
                     </div>
 
+                    <div class="price-summary"
+                        style="background-color: var(--color-secondary); color: var(--color-dark); padding: 15px; border-radius: 8px; margin-bottom: 20px; font-weight: bold; text-align: center; font-size: 1.2rem;">
+                        <span id="selectedPrice">VALOR TOTAL: R$ 60,00</span>
+                    </div>
+
                     <button type="submit" class="submit-btn">CONFIRMAR INSCRIÇÃO</button>
                 </form>
             </div>
@@ -265,12 +327,10 @@
                 <h3>INSCRIÇÃO CONFIRMADA!</h3>
                 <p>Os organizadores entrarão em contato pelo WhatsApp para informar o dia do pagamento com mais detalhes
                     e retirada dos kits.</p>
-                <p>Obrigado por se inscrever no Bloco Equipe Pântano!</p>
+                <p>Obrigado por se inscrever no Bloco do Urso!</p>
             </div>
         </div>
     </div>
-
-
 
     <script src="src/js/script.js"></script>
 </body>

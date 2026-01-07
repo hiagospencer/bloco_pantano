@@ -8,7 +8,14 @@ const closeModalBtn = document.getElementById("closeModalBtn");
 const registrationForm = document.getElementById("registrationForm");
 const formContainer = document.getElementById("formContainer");
 const successMessage = document.getElementById("successMessage");
-
+const individualAbada = document.getElementById("individual");
+const casadinhaAbada = document.getElementById("casadinha");
+const shirtSizeIndividual = document.getElementById("shirtSizeIndividual");
+const shirtSizeCasadinha = document.getElementById("shirtSizeCasadinha");
+const shirtSizeSelect = document.getElementById("shirtSize");
+const shirtSize1Select = document.getElementById("shirtSize1");
+const shirtSize2Select = document.getElementById("shirtSize2");
+const selectedPrice = document.getElementById("selectedPrice");
 // Abrir menu mobile
 mobileMenuBtn.addEventListener("click", () => {
   mainNav.classList.toggle("active");
@@ -20,6 +27,33 @@ document.querySelectorAll("#mainNav a").forEach((link) => {
     mainNav.classList.remove("active");
   });
 });
+
+// Alternar entre abadá individual e casadinha
+    individualAbada.addEventListener('change', function() {
+        if (this.checked) {
+            shirtSizeIndividual.style.display = 'block';
+            shirtSizeCasadinha.style.display = 'none';
+            selectedPrice.textContent = 'VALOR TOTAL: R$ 60,00';
+
+            // Tornar os campos obrigatórios conforme necessário
+            shirtSizeSelect.required = true;
+            shirtSize1Select.required = false;
+            shirtSize2Select.required = false;
+        }
+    });
+
+    casadinhaAbada.addEventListener('change', function() {
+        if (this.checked) {
+            shirtSizeIndividual.style.display = 'none';
+            shirtSizeCasadinha.style.display = 'block';
+            selectedPrice.textContent = 'VALOR TOTAL: R$ 100,00';
+
+            // Tornar os campos obrigatórios conforme necessário
+            shirtSizeSelect.required = false;
+            shirtSize1Select.required = true;
+            shirtSize2Select.required = true;
+        }
+    });
 
 // Abrir modal de inscrição
 participateBtn.addEventListener("click", (e) => {
@@ -51,17 +85,36 @@ registrationForm.addEventListener("submit", (e) => {
   // Coletar dados do formulário
   const fullName = document.getElementById("fullName").value;
   const whatsapp = document.getElementById("whatsapp").value;
-  const shirtSize = document.getElementById("shirtSize").value;
+  const abadaType = document.querySelector(
+    'input[name="abadaType"]:checked'
+  ).value;
   const paymentMethod = document.querySelector(
     'input[name="payment"]:checked'
   ).value;
+
+  let shirtSizeInfo = "";
+    let totalPrice = "";
+
+    if (abadaType === "Individual") {
+      const shirtSize = document.getElementById("shirtSize").value;
+      shirtSizeInfo = `👕 *Tamanho da Camisa:* ${shirtSize}`;
+      totalPrice = "R$ 60,00";
+    } else {
+      const shirtSize1 = document.getElementById("shirtSize1").value;
+      const shirtSize2 = document.getElementById("shirtSize2").value;
+      shirtSizeInfo = `👕 *Tamanho Camisa 1:* ${shirtSize1}%0A👕 *Tamanho Camisa 2:* ${shirtSize2}`;
+      totalPrice = "R$ 100,00";
+    }
 
   // Formatar mensagem para WhatsApp
   const message =
     `✅ NOVA INSCRIÇÃO - BLOCO EQUIPE PÂNTANO ✅%0A%0A` +
     `👤 *Nome:* ${fullName}%0A` +
     `📱 *WhatsApp:* ${whatsapp}%0A` +
-    `👕 *Tamanho da Camisa:* ${shirtSize}%0A` +
+    `🎭 *Tipo de Abadá:* ${abadaType}%0A` +
+    shirtSizeInfo +
+    `%0A` +
+    `💰 *Valor Total:* ${totalPrice}%0A` +
     `💳 *Forma de Pagamento:* ${paymentMethod}%0A%0A` +
     `📅 *Data da Inscrição:* ${new Date().toLocaleDateString("pt-BR")}`;
 
@@ -81,6 +134,11 @@ registrationForm.addEventListener("submit", (e) => {
   // Resetar formulário após 5 segundos e fechar modal
   setTimeout(() => {
     registrationForm.reset();
+    // Resetar para o estado padrão (abadá individual)
+    individualAbada.checked = true;
+    shirtSizeIndividual.style.display = "block";
+    shirtSizeCasadinha.style.display = "none";
+    selectedPrice.textContent = "VALOR TOTAL: R$ 60,00";
     formContainer.style.display = "block";
     successMessage.style.display = "none";
     registrationModal.style.display = "none";
